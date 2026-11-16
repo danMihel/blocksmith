@@ -10,7 +10,6 @@ const model = defineModel<string>({ required: true })
 
 const HEX = /^#[0-9a-f]{6}$/i
 
-// The text field may hold an incomplete value while typing; only valid colors reach the model.
 const draft = ref(model.value)
 watch(model, (value) => (draft.value = value))
 

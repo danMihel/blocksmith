@@ -22,7 +22,6 @@ export async function loadDocument(
     : { status: 'invalid', issues: result.issues }
 }
 
-/** All readable documents, most recently edited first, plus the number of unreadable ones. */
 export async function listDocuments(
   repository: DocumentRepository,
   registry: BlockRegistry,

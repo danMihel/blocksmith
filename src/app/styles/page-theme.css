@@ -1,9 +1,3 @@
-/*
- * Page theme: design tokens of the landing page being built.
- * Independent from the editor UI tokens — the page looks the same in editor light and dark mode.
- * Base tokens are overridden per document via inline styles on `.page-root` (themeToCssVars);
- * secondary tokens are derived from them here.
- */
 @layer base {
   .page-root {
     --page-bg: #ffffff;
@@ -27,12 +21,6 @@
     font-family: var(--page-font-heading);
   }
 
-  /*
-   * Responsive block styles. Each block carries resolved values for every breakpoint
-   * (--pt-desktop, --pt-tablet, …); container queries pick the right one, so the page
-   * adapts to its own width — in the editor frame and in the exported HTML alike.
-   * Breakpoints: desktop ≥ 64rem, tablet 48–64rem, mobile < 48rem.
-   */
   .page-block {
     --space-none: 0px;
     --space-sm: 1.5rem;

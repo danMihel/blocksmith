@@ -24,7 +24,6 @@ const { document } = defineProps<{ document: PageDocument }>()
 const documentStore = useDocumentStore()
 const theme = computed(() => document.theme)
 
-// A draft lets the field be empty while typing without saving an invalid (empty) name.
 const name = ref(document.name)
 watch(
   () => document.name,

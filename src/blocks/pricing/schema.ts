@@ -6,7 +6,6 @@ export type PricingPlan = {
   price: string
   period: string
   description: string
-  /** One feature per line. */
   features: string
   action: BlockLink
   highlighted: boolean

@@ -23,7 +23,6 @@ describe('responsive styles', () => {
       spacingBottom: 'lg',
       hidden: false,
     })
-    // Mobile inherits the tablet override, not desktop.
     expect(resolveStyle(style, 'mobile')).toEqual({
       spacingTop: 'md',
       spacingBottom: 'lg',

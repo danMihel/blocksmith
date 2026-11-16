@@ -1,4 +1,3 @@
-/** Triggers a browser download of in-memory content. */
 export function downloadFile(filename: string, content: string, type: string) {
   const url = URL.createObjectURL(new Blob([content], { type }))
   const link = document.createElement('a')
@@ -8,7 +7,6 @@ export function downloadFile(filename: string, content: string, type: string) {
   setTimeout(() => URL.revokeObjectURL(url), 0)
 }
 
-/** Opens the native file picker and resolves with the chosen file's text (or null if cancelled). */
 export function pickTextFile(accept: string): Promise<{ name: string; text: string } | null> {
   return new Promise((resolve) => {
     const input = document.createElement('input')

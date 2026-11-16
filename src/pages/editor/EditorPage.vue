@@ -61,8 +61,6 @@ const { toggle: toggleDarkMode } = useDarkMode()
 
 const { document, canUndo, canRedo, undoLabel, redoLabel } = storeToRefs(documentStore)
 
-/* ---------- Loading ---------- */
-
 const state = ref<'loading' | 'ready' | 'missing' | 'invalid'>('loading')
 
 watch(
@@ -99,7 +97,6 @@ watch(
 
 onBeforeRouteLeave(() => autosave.flush())
 
-// Undo/redo can remove the selected or hovered block.
 watch(
   () => documentStore.blocks,
   (blocks) => {
@@ -108,8 +105,6 @@ watch(
     if (!exists(editor.hoveredBlockId)) editor.hover(null)
   },
 )
-
-/* ---------- Layout ---------- */
 
 const isLarge = useMediaQuery('(min-width: 1024px)')
 const leftOpen = ref(false)
@@ -128,7 +123,6 @@ const breakpointOptions: SegmentedOption<Breakpoint>[] = BREAKPOINTS.map((bp) =>
   iconOnly: true,
 }))
 
-// On small screens, selecting a block opens the inspector drawer.
 watch(
   () => editor.selectedBlockId,
   (selected) => {
@@ -143,8 +137,6 @@ function togglePanel(side: 'left' | 'right') {
   leftOpen.value = side === 'left' ? !leftOpen.value : false
   rightOpen.value = side === 'right' ? !rightOpen.value : false
 }
-
-/* ---------- Commands ---------- */
 
 const paletteOpen = ref(false)
 const exportOpen = ref(false)

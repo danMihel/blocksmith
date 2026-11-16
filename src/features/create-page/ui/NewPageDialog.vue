@@ -13,7 +13,6 @@ const BLANK = 'blank'
 const selected = ref<string>(PAGE_TEMPLATES[0]?.id ?? BLANK)
 const name = ref('')
 
-// Built once per dialog opening: thumbnails render the real template content.
 const previews = computed(() =>
   open.value ? PAGE_TEMPLATES.map((template) => ({ template, document: template.create() })) : [],
 )

@@ -1,8 +1,6 @@
 import { inject, type InjectionKey } from 'vue'
 import type { BlockCategory, BlockDefinition, BlockProps } from './types'
 
-// The registry stores definitions with erased prop types: each block knows its own props,
-// the registry only needs the common shape.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyBlockDefinition = BlockDefinition<any>
 
@@ -33,7 +31,6 @@ export class BlockRegistry {
     return [...this.definitions.values()]
   }
 
-  /** Definitions grouped by category, preserving registration order inside each group. */
   groupByCategory(): Map<BlockCategory, AnyBlockDefinition[]> {
     const groups = new Map<BlockCategory, AnyBlockDefinition[]>()
     for (const definition of this.definitions.values()) {
@@ -47,7 +44,6 @@ export class BlockRegistry {
 
 export const BLOCK_REGISTRY_KEY: InjectionKey<BlockRegistry> = Symbol('BlockRegistry')
 
-/** Dependency injection: components get the registry from the app, tests provide their own. */
 export function useBlockRegistry(): BlockRegistry {
   const registry = inject(BLOCK_REGISTRY_KEY, null)
   if (!registry) {

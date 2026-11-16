@@ -11,11 +11,6 @@ export type EditorHotkeyHandlers = {
   deselect: () => void
 }
 
-/**
- * Global editor shortcuts. Text-editing keys (Delete, Backspace…) are ignored while
- * the user types in a field; undo/redo always go to the document history, because
- * every field is bound to the document anyway.
- */
 export function useEditorHotkeys(handlers: EditorHotkeyHandlers) {
   useEventListener(window, 'keydown', (event: KeyboardEvent) => {
     if (event.defaultPrevented || event.isComposing) return
@@ -41,7 +36,6 @@ export function useEditorHotkeys(handlers: EditorHotkeyHandlers) {
     }
 
     if (isEditableTarget(event.target)) return
-    // Native dialogs handle their own keys.
     if (event.target instanceof Element && event.target.closest('dialog[open]')) return
 
     if (mod && key === 'd') {

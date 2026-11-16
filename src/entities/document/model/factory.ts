@@ -24,7 +24,6 @@ export function createDocument({
   }
 }
 
-/** A copy with a new identity — for "Duplicate" and imports. */
 export function cloneDocument(document: PageDocument, name = document.name): PageDocument {
   const now = new Date().toISOString()
   return {

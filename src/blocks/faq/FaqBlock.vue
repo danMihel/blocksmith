@@ -18,7 +18,6 @@ const { title, subtitle, items } = defineProps<FaqProps>()
         <p v-if="subtitle" class="mt-4 text-lg text-pretty text-page-muted">{{ subtitle }}</p>
       </header>
 
-      <!-- Native disclosure widgets: accessible and interactive without JavaScript -->
       <div class="divide-y divide-page-line border-y border-page-line">
         <details v-for="(item, index) in items" :key="index" class="group">
           <summary

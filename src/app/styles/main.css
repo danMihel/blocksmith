@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/inter';
-/* Page theme fonts: @font-face only — files are fetched when a theme actually uses them. */
 @import '@fontsource-variable/dm-sans';
 @import '@fontsource-variable/space-grotesk';
 @import '@fontsource-variable/playfair-display';
@@ -9,10 +8,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/*
- * Design tokens of the editor UI itself.
- * Not to be confused with page themes (stage 6) — those live in the document model.
- */
 :root {
   --app-bg: oklch(0.985 0.002 265);
   --app-surface: oklch(1 0 0);
@@ -77,7 +72,6 @@
   }
 }
 
-/* Set on <html> while a drag is in progress. */
 .is-dragging,
 .is-dragging * {
   cursor: grabbing !important;

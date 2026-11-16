@@ -2,10 +2,6 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Breakpoint } from '@/entities/block'
 
-/**
- * Transient state of the editing session: what is selected, hovered and previewed.
- * Deliberately separate from the document — none of it is saved or undoable.
- */
 export const useEditorStore = defineStore('editor', () => {
   const selectedBlockId = ref<string | null>(null)
   const hoveredBlockId = ref<string | null>(null)

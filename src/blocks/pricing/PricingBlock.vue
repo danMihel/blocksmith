@@ -5,7 +5,6 @@ import type { PricingProps } from './schema'
 
 const { eyebrow, title, subtitle, plans } = defineProps<PricingProps>()
 
-// Full class names so Tailwind can see them at build time.
 const layouts: Record<number, string> = {
   1: 'mx-auto max-w-md',
   2: 'mx-auto max-w-4xl @3xl:grid-cols-2',

@@ -36,7 +36,6 @@ const pageDocumentSchema = z.object({
 }) satisfies z.ZodType<PageDocument>
 
 export type DocumentIssue = {
-  /** Dot-separated path inside the document, e.g. `blocks.2.props.title`. */
   path: string
   message: string
   blockId?: string
@@ -48,13 +47,6 @@ export type ParseResult =
 
 const toPath = (path: readonly PropertyKey[]) => path.map(String).join('.')
 
-/**
- * Validates untrusted input (imports, storage) in three steps:
- * 1. Migrations — older documents are upgraded to the current version.
- * 2. Structure — a broken structure makes the document unusable (`ok: false`).
- * 3. Block props against each block's own schema — problems are reported as issues,
- *    but the document stays usable: unknown or invalid blocks get a fallback in the renderer.
- */
 export function parseDocument(input: unknown, registry: BlockRegistry): ParseResult {
   const structure = pageDocumentSchema.safeParse(migrateDocument(input))
   if (!structure.success) {

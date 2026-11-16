@@ -54,10 +54,8 @@ function onHandlePointerDown(event: PointerEvent) {
     @pointerenter="editor.hover(block.id)"
     @pointerleave="editor.hover(null)"
   >
-    <!-- `inert`: the page content is not interactive in the editor (links, focus, menus) -->
     <PageBlock :block inert />
 
-    <!-- Hidden at the current breakpoint: keep a slim placeholder so it stays reachable -->
     <div
       v-if="hidden"
       class="flex h-9 items-center justify-center gap-2 border-y border-dashed border-line bg-surface-muted/60 font-sans text-xs text-fg-muted"
@@ -66,7 +64,6 @@ function onHandlePointerDown(event: PointerEvent) {
       {{ name }} is hidden on {{ BREAKPOINT_META[editor.breakpoint].label }}
     </div>
 
-    <!-- Selection chrome uses editor tokens, never the page theme -->
     <div
       aria-hidden="true"
       :class="

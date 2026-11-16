@@ -2,7 +2,6 @@
 import { computed } from 'vue'
 import { dragState } from '../model/drag'
 
-/** Insertion line rendered inside a drop list (the list element must be `relative`). */
 const { listId } = defineProps<{ listId: string }>()
 
 const target = computed(() => (dragState.target?.listId === listId ? dragState.target : null))

@@ -9,7 +9,6 @@ const UNITS: [Intl.RelativeTimeFormatUnit, number][] = [
 
 const formatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
 
-/** "just now", "5 minutes ago", "yesterday"… */
 export function formatRelativeTime(iso: string, now: number = Date.now()): string {
   const seconds = Math.round((new Date(iso).getTime() - now) / 1000)
   if (Math.abs(seconds) < 45) return 'just now'
@@ -20,7 +19,6 @@ export function formatRelativeTime(iso: string, now: number = Date.now()): strin
   return formatter.format(Math.round(seconds / 60), 'minute')
 }
 
-/** "page-name" from "Page Name!" — for file names. */
 export function slugify(value: string): string {
   return (
     value

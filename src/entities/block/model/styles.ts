@@ -2,11 +2,6 @@ import { Monitor, Smartphone, Tablet } from '@lucide/vue'
 import { type Component, markRaw } from 'vue'
 import { z } from 'zod'
 
-/*
- * Responsive block styles with a desktop-first cascade: tablet inherits from desktop,
- * mobile inherits from tablet. Only overridden values are stored for smaller breakpoints.
- */
-
 export const BREAKPOINTS = ['desktop', 'tablet', 'mobile'] as const
 export type Breakpoint = (typeof BREAKPOINTS)[number]
 export type OverrideBreakpoint = Exclude<Breakpoint, 'desktop'>
@@ -53,7 +48,6 @@ export const responsiveStyleSchema = z.object({
   mobile: blockStyleSchema.partial().optional(),
 }) satisfies z.ZodType<ResponsiveStyle>
 
-/** Effective style at a breakpoint after applying the cascade. */
 export function resolveStyle(style: ResponsiveStyle, breakpoint: Breakpoint): BlockStyle {
   let resolved = style.desktop
   if (breakpoint === 'desktop') return resolved
@@ -80,7 +74,6 @@ export function setStyleValue<K extends keyof BlockStyle>(
   return { ...style, [breakpoint]: { ...style[breakpoint], [key]: value } }
 }
 
-/** Removes an override so the value is inherited again. */
 export function resetStyleValue(
   style: ResponsiveStyle,
   breakpoint: OverrideBreakpoint,
@@ -97,11 +90,6 @@ export function resetStyleValue(
   return next
 }
 
-/**
- * Turns the style into CSS custom properties consumed by `.page-block`
- * (see app/styles/page-theme.css), which switches between them with container queries.
- * The page stays responsive without JavaScript — this is also what the HTML export ships.
- */
 export function styleToCssVars(style: ResponsiveStyle): Record<string, string> {
   const vars: Record<string, string> = {}
   for (const breakpoint of BREAKPOINTS) {

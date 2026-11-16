@@ -30,10 +30,6 @@ export const RADII = {
 export type RadiusId = keyof typeof RADII
 export const RADIUS_IDS = Object.keys(RADII) as [RadiusId, ...RadiusId[]]
 
-/**
- * The page theme stores only a handful of decisions; secondary colors
- * (muted text, surfaces, borders) are derived from them in CSS with color-mix().
- */
 export type PageTheme = {
   primary: string
   background: string
@@ -129,7 +125,6 @@ export const THEME_PRESETS: readonly ThemePreset[] = [
   },
 ]
 
-/** WCAG relative luminance of a #rrggbb color. */
 export function luminance(hex: string): number {
   const [r, g, b] = [1, 3, 5].map((i) => {
     const c = parseInt(hex.slice(i, i + 2), 16) / 255
@@ -138,20 +133,17 @@ export function luminance(hex: string): number {
   return 0.2126 * r + 0.7152 * g + 0.0722 * b
 }
 
-/** WCAG contrast ratio, from 1 (none) to 21 (black on white). */
 export function contrastRatio(a: string, b: string): number {
   const [light, dark] = [luminance(a), luminance(b)].sort((x, y) => y - x) as [number, number]
   return (light + 0.05) / (dark + 0.05)
 }
 
-/** White or near-black — whichever reads better on the given background. */
 export function readableTextOn(background: string): string {
   return contrastRatio(background, '#ffffff') >= contrastRatio(background, '#0a0a0a')
     ? '#ffffff'
     : '#0a0a0a'
 }
 
-/** CSS custom properties for `.page-root`; derived tokens are computed in page-theme.css. */
 export function themeToCssVars(theme: PageTheme): Record<string, string> {
   return {
     '--page-bg': theme.background,

@@ -7,7 +7,6 @@ const { eyebrow, title, subtitle, primaryAction, secondaryAction, align } = defi
 
 <template>
   <section class="relative isolate overflow-hidden px-6 pt-(--pt) pb-(--pb)">
-    <!-- Decorative backdrop: soft glow + fading grid -->
     <div
       aria-hidden="true"
       class="absolute inset-0 -z-10 bg-[radial-gradient(60%_55%_at_50%_0%,color-mix(in_oklch,var(--page-primary)_22%,transparent),transparent_70%)]"

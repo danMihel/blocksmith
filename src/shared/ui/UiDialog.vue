@@ -4,10 +4,6 @@ import { onMounted, useId, useTemplateRef, watch } from 'vue'
 import { cn } from '@/shared/lib'
 import UiIconButton from './UiIconButton.vue'
 
-/**
- * Built on the native <dialog>: focus trapping, Esc, top layer and inert background
- * come from the platform instead of JavaScript.
- */
 const {
   title,
   description,
@@ -17,7 +13,6 @@ const {
   title: string
   description?: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
-  /** No visible header (the title stays available to assistive tech). */
   bare?: boolean
 }>()
 

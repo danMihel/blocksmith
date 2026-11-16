@@ -1,11 +1,5 @@
 import type { BlockNode, BlockProps } from '@/entities/block'
 
-/*
- * Pure, immutable operations on the block list.
- * They never mutate their input and return the *same* array when nothing changes,
- * so callers can cheaply detect no-ops. The command system (stage 3) is built on top of them.
- */
-
 type Blocks = readonly BlockNode[]
 
 const clampIndex = (index: number, length: number) => Math.min(Math.max(index, 0), length)
@@ -33,7 +27,6 @@ export function moveBlock(blocks: Blocks, id: string, toIndex: number): BlockNod
   return next
 }
 
-/** Shallow-merges `patch` into the block props. */
 export function updateBlockProps(blocks: Blocks, id: string, patch: BlockProps): BlockNode[] {
   const index = blocks.findIndex((b) => b.id === id)
   const block = blocks[index]
@@ -42,7 +35,6 @@ export function updateBlockProps(blocks: Blocks, id: string, patch: BlockProps):
   return blocks.with(index, { ...block, props: { ...block.props, ...patch } })
 }
 
-/** Inserts a deep copy of the block right after the original. */
 export function duplicateBlock(blocks: Blocks, id: string, newId: string): BlockNode[] {
   const index = blocks.findIndex((b) => b.id === id)
   const block = blocks[index]

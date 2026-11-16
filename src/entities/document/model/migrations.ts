@@ -7,12 +7,7 @@ type RawDocument = Record<string, unknown> & { version: number }
 const isObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
-/**
- * Each migration upgrades a document by exactly one version.
- * They work on raw data and must never throw: validation happens afterwards.
- */
 const MIGRATIONS: Record<number, (doc: RawDocument) => RawDocument> = {
-  // v1 → v2: page themes and responsive block styles.
   1: (doc) => ({
     ...doc,
     version: 2,
@@ -25,7 +20,6 @@ const MIGRATIONS: Record<number, (doc: RawDocument) => RawDocument> = {
   }),
 }
 
-/** Brings a document of any older version up to the current one. Unknown input is returned as is. */
 export function migrateDocument(input: unknown): unknown {
   if (!isObject(input) || typeof input.version !== 'number') return input
 

@@ -5,16 +5,11 @@ import { UiInput, UiSegmented, UiSelect, UiSwitch, UiTextarea } from '@/shared/u
 import IconPicker from './IconPicker.vue'
 import ListControl from './ListControl.vue'
 
-/**
- * Renders one inspector field from its declarative description.
- * Recursive through ListControl, so lists of lists (footer columns → links) just work.
- */
 defineOptions({ name: 'FieldControl' })
 
 const { field, value, path, errors } = defineProps<{
   field: AnyField
   value: unknown
-  /** Dot path inside block props, used to look up validation errors. */
   path: string
   errors: ReadonlyMap<string, string>
 }>()

@@ -14,19 +14,12 @@ export function exportJson(document: PageDocument) {
 const escapeHtml = (value: string) =>
   value.replace(/[&<>"']/g, (char) => `&#${char.charCodeAt(0)};`)
 
-/**
- * All CSS rules currently applied to the app, with relative `url()`s made absolute so
- * fonts keep loading from the app's origin. Only Tailwind utilities that the app uses are
- * in there — the page's blocks are part of the app, so everything they need is included.
- */
 function collectCss(): string {
   const rules: string[] = []
   for (const sheet of document.styleSheets) {
     try {
       for (const rule of sheet.cssRules) rules.push(rule.cssText)
-    } catch {
-      // Cross-origin stylesheet: not readable, not ours.
-    }
+    } catch {}
   }
   return rules
     .join('\n')
@@ -36,11 +29,6 @@ function collectCss(): string {
     )
 }
 
-/**
- * Renders the page with the same components the editor uses into a standalone HTML file.
- * Responsive behaviour survives because it is pure CSS (container queries), and interactive
- * bits (FAQ accordion, mobile menu) use native <details>, so no JavaScript is needed.
- */
 export async function renderPageToHtml(
   page: PageDocument,
   registry: BlockRegistry,

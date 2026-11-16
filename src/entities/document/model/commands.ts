@@ -3,25 +3,13 @@ import type { PageTheme } from '@/entities/theme'
 import * as ops from './operations'
 import type { PageDocument } from './types'
 
-/**
- * Command pattern: every change to the document is an object that knows how to apply
- * and revert itself. The store keeps them in undo/redo stacks.
- *
- * Commands capture whatever they need for `undo` during `execute` (e.g. the removed block
- * and its index), so `redo` simply executes them again.
- */
 export interface Command {
   readonly label: string
   execute(doc: PageDocument): PageDocument
   undo(doc: PageDocument): PageDocument
-  /**
-   * Absorbs the next command into this one, so that typing "Hello" is a single undo step
-   * rather than five. Returns the merged command, or null if they can't be merged.
-   */
   merge?(next: Command): Command | null
 }
 
-/** Consecutive edits of the same thing within this window become one undo step. */
 export const MERGE_WINDOW_MS = 1000
 
 const withBlocks = (doc: PageDocument, blocks: BlockNode[]): PageDocument =>

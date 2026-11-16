@@ -11,10 +11,8 @@ const {
   stretch = false,
 } = defineProps<{
   options: readonly SegmentedOption<T>[]
-  /** Accessible name of the radio group. */
   label: string
   size?: ControlSize
-  /** Fill the available width, splitting it equally between options. */
   stretch?: boolean
 }>()
 
@@ -23,7 +21,6 @@ const model = defineModel<T>({ required: true })
 const items = useTemplateRef<HTMLButtonElement[]>('items')
 
 const selectedIndex = computed(() => options.findIndex((o) => o.value === model.value))
-/** Roving tabindex: exactly one option is reachable with Tab. */
 const tabbableIndex = computed(() => Math.max(selectedIndex.value, 0))
 
 function select(index: number) {

@@ -2,10 +2,6 @@ import { createStore, del, get, set, values } from 'idb-keyval'
 import { inject, type InjectionKey } from 'vue'
 import type { PageDocument } from '../model/types'
 
-/**
- * Storage port. Returns raw (unvalidated) data: whatever is read must go through
- * `parseDocument()` — storage may contain documents from older app versions.
- */
 export interface DocumentRepository {
   list(): Promise<unknown[]>
   get(id: string): Promise<unknown>
@@ -13,7 +9,6 @@ export interface DocumentRepository {
   remove(id: string): Promise<void>
 }
 
-/** Plain JSON copy: strips reactive proxies and anything that isn't serializable. */
 const toJson = (document: PageDocument): PageDocument => JSON.parse(JSON.stringify(document))
 
 export function createIndexedDbRepository(): DocumentRepository {
@@ -26,7 +21,6 @@ export function createIndexedDbRepository(): DocumentRepository {
   }
 }
 
-/** For tests and environments without IndexedDB. */
 export function createMemoryRepository(initial: PageDocument[] = []): DocumentRepository {
   const items = new Map(initial.map((doc) => [doc.id, toJson(doc)]))
   return {

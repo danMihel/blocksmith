@@ -5,7 +5,6 @@ import {
   DOCUMENT_REPOSITORY_KEY,
 } from '@/entities/document'
 
-/** IndexedDB in the browser; in-memory where it's unavailable (some private modes, SSR, tests). */
 export const documentRepository: Plugin = {
   install(app) {
     const repository =

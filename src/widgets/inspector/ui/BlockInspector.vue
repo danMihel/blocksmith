@@ -23,7 +23,6 @@ const tabs = [
   { value: 'style', label: 'Style' },
 ] as const
 
-/** Live validation against the block's own schema, keyed by dot path. */
 const errors = computed(() => {
   const map = new Map<string, string>()
   const result = definition.value?.schema.safeParse(block.props)

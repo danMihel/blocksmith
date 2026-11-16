@@ -16,10 +16,6 @@ import {
 } from '@lucide/vue'
 import type { Component } from 'vue'
 
-/**
- * Curated icon set available to page content (feature lists, cards…).
- * Documents store the icon *name*, so the set stays serializable and versionable.
- */
 export const CONTENT_ICONS = {
   zap: Zap,
   shield: Shield,

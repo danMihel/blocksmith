@@ -35,7 +35,6 @@ useDropList('layers', list, {
 const definitionOf = (block: BlockNode) => registry.get(block.type)
 const nameOf = (block: BlockNode) => definitionOf(block)?.meta.name ?? block.type
 
-/** A recognizable hint next to the block name: its title, brand or first question. */
 function summaryOf(block: BlockNode): string {
   for (const key of ['title', 'brand', 'eyebrow']) {
     const value = block.props[key]

@@ -10,10 +10,6 @@ const { block } = defineProps<{ block: BlockNode }>()
 const registry = useBlockRegistry()
 const definition = computed(() => registry.get(block.type))
 
-/**
- * Error boundary: a broken block shows a fallback instead of taking the whole page down.
- * The error is cleared as soon as the props change, so fixing them in the inspector recovers it.
- */
 const error = shallowRef<Error | null>(null)
 
 onErrorCaptured((err) => {

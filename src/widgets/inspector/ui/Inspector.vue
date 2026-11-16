@@ -16,7 +16,6 @@ const selectedBlock = computed(() =>
 </script>
 
 <template>
-  <!-- Keyed by block id: switching blocks resets tabs and expanded list items -->
   <BlockInspector v-if="selectedBlock" :key="selectedBlock.id" :block="selectedBlock" />
   <PageSettings v-else-if="document" :document />
 </template>

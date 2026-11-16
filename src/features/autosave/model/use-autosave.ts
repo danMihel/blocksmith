@@ -5,11 +5,6 @@ import { toast } from '@/shared/ui'
 
 export type SaveStatus = 'saved' | 'pending' | 'saving' | 'error'
 
-/**
- * Saves the open document after a short pause in editing.
- * Thanks to the immutable document, "has it changed since the last save?" is a reference
- * comparison. Pending changes are flushed when the page is hidden or the editor unmounts.
- */
 export function useAutosave({ delay = 700 }: { delay?: number } = {}) {
   const repository = useDocumentRepository()
   const store = useDocumentStore()
@@ -48,7 +43,6 @@ export function useAutosave({ delay = 700 }: { delay?: number } = {}) {
   watch(
     () => store.document,
     (doc, previous) => {
-      // Opening another document is not an edit.
       if (!doc || !previous || doc.id !== previous.id) {
         lastSaved = doc
         status.value = 'saved'

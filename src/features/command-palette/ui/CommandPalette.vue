@@ -24,7 +24,6 @@ const results = computed(() =>
   ),
 )
 
-/** Groups in order of their best result; flat indexes stay aligned with `results`. */
 const groups = computed(() => {
   const map = new Map<string, { command: PaletteCommand; index: number }[]>()
   results.value.forEach(({ item }, index) => {

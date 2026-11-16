@@ -11,11 +11,9 @@ const {
   pressed = undefined,
   disabled = false,
 } = defineProps<{
-  /** Accessible name; also shown as a native tooltip. */
   label: string
   variant?: ButtonVariant
   size?: ControlSize
-  /** Makes the button a toggle (aria-pressed). */
   pressed?: boolean
   disabled?: boolean
 }>()

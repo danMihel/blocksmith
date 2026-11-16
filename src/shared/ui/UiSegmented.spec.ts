@@ -12,7 +12,6 @@ const options: SegmentedOption<Device>[] = [
 ]
 
 function factory(modelValue: Device = 'desktop') {
-  // Emulates v-model: feed every emitted value back as the new prop.
   const wrapper: VueWrapper = mount(UiSegmented, {
     attachTo: document.body,
     props: {

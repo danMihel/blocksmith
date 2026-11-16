@@ -18,7 +18,6 @@ const emit = defineEmits<{ update: [value: unknown[]] }>()
 type Item = Record<string, unknown>
 const items = computed(() => (Array.isArray(value) ? value : []) as Item[])
 
-/** Accordion: one item expanded at a time keeps a long list manageable. */
 const expanded = ref<number | null>(null)
 
 const canAdd = computed(() => field.max === undefined || items.value.length < field.max)

@@ -21,7 +21,6 @@ const { brand, links, action } = defineProps<NavbarProps>()
         {{ brand }}
       </a>
 
-      <!-- Desktop -->
       <ul class="ml-auto hidden items-center gap-1 @3xl:flex">
         <li v-for="(link, index) in links" :key="index">
           <a
@@ -40,7 +39,6 @@ const { brand, links, action } = defineProps<NavbarProps>()
         {{ action.label }}
       </a>
 
-      <!-- Mobile: a <details> disclosure works without JavaScript, also in the HTML export -->
       <details class="group ml-auto @3xl:hidden">
         <summary
           class="grid size-10 cursor-pointer list-none place-items-center rounded-page border border-page-line text-page-fg [&::-webkit-details-marker]:hidden"

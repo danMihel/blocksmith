@@ -4,7 +4,6 @@ import type { FeaturesProps } from './schema'
 
 const { eyebrow, title, subtitle, columns, items } = defineProps<FeaturesProps>()
 
-// Full class names so Tailwind can see them at build time.
 const gridColumns: Record<FeaturesProps['columns'], string> = {
   2: '@2xl:grid-cols-2',
   3: '@2xl:grid-cols-2 @5xl:grid-cols-3',

@@ -22,7 +22,6 @@ const {
 
 const model = defineModel<T>({ required: true })
 
-// Native <select> only deals in strings: bind by index to keep numbers as numbers.
 const selectedIndex = computed(() => options.findIndex((o) => o.value === model.value))
 
 function onChange(event: Event) {

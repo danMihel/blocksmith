@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { computeDropIndex, toMoveIndex } from './drop-index'
 
-// Three 100px items stacked from y = 0.
 const rects = [
   { top: 0, height: 100 },
   { top: 100, height: 100 },
@@ -29,9 +28,9 @@ describe('computeDropIndex', () => {
 
 describe('toMoveIndex', () => {
   it('accounts for the dragged item being removed first', () => {
-    expect(toMoveIndex(0, 3)).toBe(2) // to the end of a 3-item list
+    expect(toMoveIndex(0, 3)).toBe(2)
     expect(toMoveIndex(2, 0)).toBe(0)
-    expect(toMoveIndex(1, 1)).toBe(1) // dropped in place
-    expect(toMoveIndex(1, 2)).toBe(1) // right after itself: still in place
+    expect(toMoveIndex(1, 1)).toBe(1)
+    expect(toMoveIndex(1, 2)).toBe(1)
   })
 })

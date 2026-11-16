@@ -9,17 +9,6 @@ import {
 } from 'vue'
 import { computeDropIndex } from './drop-index'
 
-/*
- * A small pointer-events drag & drop engine (no HTML5 DnD: it can't style the drag image,
- * doesn't work on touch and fires unreliable events).
- *
- * - `startDrag()` is called from a pointerdown handler; the drag only starts after the
- *   pointer has moved a few pixels, so plain clicks keep working.
- * - Drop lists register with `useDropList()`; items inside them are marked with
- *   `data-drop-item`. The engine finds the list under the pointer and the gap between items.
- * - Containers marked with `data-autoscroll` scroll when the pointer nears their edges.
- */
-
 export type DragPayload =
   | { kind: 'new'; blockType: string; label: string; icon: Component }
   | { kind: 'move'; blockId: string; label: string; icon: Component }
@@ -65,7 +54,6 @@ function findTarget(x: number, y: number, payload: DragPayload): DropTarget | nu
   return { listId: list.id, index, offset: edge - listTop }
 }
 
-/** Scrolls the container under the pointer while the pointer is near its top/bottom edge. */
 function createAutoScroller(onScroll: () => void) {
   let frame = 0
   let container: HTMLElement | null = null
@@ -107,7 +95,6 @@ function createAutoScroller(onScroll: () => void) {
   }
 }
 
-/** The click that follows a drag must not select or activate anything. */
 function suppressNextClick() {
   const swallow = (event: MouseEvent) => {
     event.stopPropagation()
@@ -176,7 +163,6 @@ export function startDrag(event: PointerEvent, payload: DragPayload) {
   window.addEventListener('keydown', onKeydown, true)
 }
 
-/** Registers an element as a drop list for as long as the calling component lives. */
 export function useDropList(
   id: string,
   el: Readonly<ShallowRef<HTMLElement | null>>,

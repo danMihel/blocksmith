@@ -1,6 +1,5 @@
 import type { ButtonVariant, ControlSize } from './types'
 
-/** Shared between every focusable control so focus looks the same everywhere. */
 export const focusRing =
   'outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg'
 
@@ -11,7 +10,6 @@ export const buttonVariants: Record<ButtonVariant, string> = {
   danger: 'bg-danger text-danger-fg shadow-xs hover:opacity-90',
 }
 
-/** Text-like controls: input, textarea, select. */
 export const inputBase =
   'w-full border border-line bg-surface text-fg shadow-xs transition-colors outline-none placeholder:text-fg-muted/70 hover:border-fg-muted/40 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 aria-invalid:border-danger'
 

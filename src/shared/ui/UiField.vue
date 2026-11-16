@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
 
-/**
- * Label + hint/error wrapper. Owns the ids and hands them to the control through the slot,
- * so every control gets correct `for` / `aria-describedby` / `aria-invalid` wiring.
- */
 const { label, hint, error, id } = defineProps<{
   label?: string
   hint?: string

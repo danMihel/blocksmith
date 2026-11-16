@@ -8,10 +8,6 @@ import { navbarBlock } from './navbar'
 import { pricingBlock } from './pricing'
 import { testimonialsBlock } from './testimonials'
 
-/**
- * Every block available in the editor, in library order. Adding a block = creating a folder
- * and listing it here; nothing else in the app needs to change.
- */
 export const blockDefinitions: readonly AnyBlockDefinition[] = [
   navbarBlock,
   heroBlock,

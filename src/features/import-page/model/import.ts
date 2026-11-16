@@ -11,10 +11,6 @@ export type ImportResult =
   | { ok: true; document: PageDocument; issues: DocumentIssue[] }
   | { ok: false; reason: string; issues: DocumentIssue[] }
 
-/**
- * Parses an exported project file. The imported page always gets a new id, so importing
- * the same file twice never overwrites anything.
- */
 export function importDocument(text: string, registry: BlockRegistry): ImportResult {
   let json: unknown
   try {

@@ -29,7 +29,6 @@ const initials = (name: string) =>
         <p v-if="subtitle" class="mt-4 text-lg text-pretty text-page-muted">{{ subtitle }}</p>
       </header>
 
-      <!-- Masonry via CSS columns: cards of different heights pack without gaps -->
       <div class="mt-14 columns-1 gap-4 @3xl:columns-2 @3xl:gap-6 @5xl:columns-3">
         <figure
           v-for="(item, index) in items"

@@ -24,7 +24,6 @@ const { selectedBlockId, hoveredBlockId, breakpoint } = storeToRefs(editor)
 
 const frameWidth = computed(() => BREAKPOINT_META[breakpoint.value].frameWidth)
 
-// On narrow screens the frame can't reach the device width: say so instead of pretending.
 const frame = useTemplateRef<HTMLElement>('frame')
 const { width: actualWidth } = useElementSize(frame, undefined, { box: 'border-box' })
 const frameLabel = computed(() => {
@@ -50,7 +49,6 @@ function onDrop(payload: DragPayload, index: number) {
   editor.select(payload.blockId)
 }
 
-// Keep the selected block in view: after adding, undoing, picking it in layers or the palette.
 watch(selectedBlockId, async (id) => {
   if (!id) return
   await nextTick()

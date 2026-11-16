@@ -5,7 +5,6 @@ import { PageRenderer, parseDocument } from '@/entities/document'
 import { blockDefinitions } from './index'
 import { PAGE_TEMPLATES } from './templates'
 
-/** Keys of `fields` must exist in the defaults, recursively through lists. */
 function checkFields(fields: AnyField[], sample: Record<string, unknown>, path: string): string[] {
   return fields.flatMap((field) => {
     const at = `${path}.${field.key}`
@@ -19,9 +18,6 @@ function checkFields(fields: AnyField[], sample: Record<string, unknown>, path: 
   })
 }
 
-/**
- * Contract tests: every block — including ones added in the future — must satisfy them.
- */
 describe.each(blockDefinitions.map((d) => [d.type, d] as const))('block "%s"', (_, definition) => {
   it('has defaults that pass its own schema', () => {
     const result = definition.schema.safeParse(definition.defaults())

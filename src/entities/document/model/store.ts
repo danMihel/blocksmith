@@ -6,18 +6,10 @@ import type { PageDocument } from './types'
 
 const HISTORY_LIMIT = 100
 
-/**
- * Holds the document being edited and its undo/redo history.
- *
- * The document is immutable and kept in a `shallowRef`: every change produces a new object.
- * Changes are cheap to detect, and snapshots are free for autosave and thumbnails.
- * All mutations go through `execute(command)` — there is no other way to change the document.
- */
 export const useDocumentStore = defineStore('document', () => {
   const document = shallowRef<PageDocument | null>(null)
   const past = shallowRef<readonly Command[]>([])
   const future = shallowRef<readonly Command[]>([])
-  /** Merging is only allowed right after another execute — never across undo/redo. */
   let canMerge = false
 
   const blocks = computed<readonly BlockNode[]>(() => document.value?.blocks ?? [])
@@ -41,7 +33,6 @@ export const useDocumentStore = defineStore('document', () => {
   const open = (doc: PageDocument) => reset(doc)
   const close = () => reset(null)
 
-  /** Applies a command. Returns false if it changed nothing (and records nothing). */
   function execute(command: Command): boolean {
     const current = document.value
     if (!current) return false

@@ -1,11 +1,3 @@
-/**
- * Subsequence fuzzy matching, the way editors' command palettes work:
- * "dupl" matches "Duplicate block", "ahr" matches "Add Hero".
- *
- * Returns null when the query doesn't match, otherwise a score (higher is better) and the
- * matched character positions for highlighting. Consecutive characters and matches at
- * word starts score higher, so "add" ranks "Add Hero" above "Load data".
- */
 export function fuzzyMatch(
   query: string,
   text: string,
@@ -34,12 +26,10 @@ export function fuzzyMatch(
     from = index + 1
   }
 
-  // Prefer shorter texts and earlier first matches.
   score -= (positions[0] ?? 0) * 0.1 + t.length * 0.01
   return { score, positions }
 }
 
-/** Filters and sorts items by match quality; keeps the original order for an empty query. */
 export function fuzzyFilter<T>(items: readonly T[], query: string, toText: (item: T) => string) {
   return items
     .map((item, index) => ({ item, index, match: fuzzyMatch(query, toText(item)) }))

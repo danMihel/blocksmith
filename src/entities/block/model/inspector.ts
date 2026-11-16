@@ -1,13 +1,5 @@
 import type { BlockLink } from './fields'
 
-/*
- * Declarative description of the inspector form of a block.
- *
- * `FieldDef<P>` is derived from the block props type: the key must exist in P and the
- * control must suit the value type — a `list` only for arrays, a `link` only for links,
- * a `toggle` only for booleans. Typos and mismatches fail at compile time.
- */
-
 type StringKey<T> = Extract<keyof T, string>
 
 type FieldBase<K extends string> = {
@@ -40,11 +32,9 @@ export type ToggleField<K extends string = string> = FieldBase<K> & { control: '
 
 export type ListField<K extends string = string, I = unknown> = FieldBase<K> & {
   control: 'list'
-  /** Singular noun for buttons: "Add feature". */
   itemLabel: string
   fields: FieldDef<I>[]
   createItem: () => I
-  /** Item field shown as the collapsed item title. */
   titleKey?: StringKey<I>
   min?: number
   max?: number
@@ -64,11 +54,9 @@ type FieldFor<P, K extends StringKey<P>> = P[K] extends readonly (infer I)[]
 
 type IsAny<T> = 0 extends 1 & T ? true : false
 
-/** `FieldDef<any>` (a type-erased definition) is the erased `AnyField`, not a mapped `any`. */
 export type FieldDef<P> =
   IsAny<P> extends true ? AnyField : { [K in StringKey<P>]: FieldFor<P, K> }[StringKey<P>]
 
-/** Type-erased field, as the generic inspector sees it. */
 export type AnyField =
   | TextField
   | TextareaField

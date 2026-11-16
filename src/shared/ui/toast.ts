@@ -12,7 +12,6 @@ export type Toast = {
 const toasts = shallowRef<readonly Toast[]>([])
 let nextId = 1
 
-/** Global notification service. Rendered by <UiToaster /> mounted once in the app. */
 export function toast({
   title,
   description,

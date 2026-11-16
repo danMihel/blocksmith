@@ -23,8 +23,6 @@ const tones: Record<CtaProps['tone'], { card: string; button: string }> = {
         tones[tone].card,
       ]"
     >
-      <!-- Decorative rings -->
-      <!-- Smaller and pushed to the corners on narrow screens so they never sit under the text -->
       <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 opacity-15">
         <div
           class="absolute -top-20 -right-20 size-44 rounded-full border-[24px] border-current @3xl:-top-24 @3xl:-right-16 @3xl:size-72 @3xl:border-[40px]"

@@ -19,11 +19,6 @@ import {
 import { useEditorStore } from '@/entities/editor'
 import { createId } from '@/shared/lib'
 
-/**
- * Every user-level operation on blocks, shared by the canvas, layers panel, library,
- * inspector, hotkeys and command palette. Builds commands with human-readable labels
- * ("Delete Pricing") and keeps the selection consistent.
- */
 export function useBlockActions() {
   const registry = useBlockRegistry()
   const documentStore = useDocumentStore()
@@ -34,7 +29,6 @@ export function useBlockActions() {
     return block ? (registry.get(block.type)?.meta.name ?? block.type) : 'block'
   }
 
-  /** New blocks go after the selected one, or to the end. */
   function insertionIndex(): number {
     const selected = editor.selectedBlockId
     const index = selected ? documentStore.indexOf(selected) : -1

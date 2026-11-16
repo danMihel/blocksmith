@@ -19,7 +19,6 @@ export default defineConfigWithVueTs(
     name: 'app/rules',
     rules: {
       'vue/multi-word-component-names': 'off',
-      // Optional TS props are `undefined` by default — no need to spell it out.
       'vue/require-default-prop': 'off',
       'vue/component-name-in-template-casing': ['error', 'PascalCase'],
       'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
@@ -32,7 +31,6 @@ export default defineConfigWithVueTs(
         'error',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
-      // Feature-Sliced Design: other slices are reachable only through their public API (index.ts).
       'no-restricted-imports': [
         'error',
         {
@@ -61,7 +59,6 @@ export default defineConfigWithVueTs(
     files: ['src/**/*.spec.ts'],
     rules: {
       ...pluginVitest.configs.recommended.rules,
-      // Tests define small throwaway components inline.
       'vue/one-component-per-file': 'off',
     },
   },

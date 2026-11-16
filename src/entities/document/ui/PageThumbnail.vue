@@ -10,7 +10,6 @@ const { blocks, theme = DEFAULT_THEME } = defineProps<{
   theme?: PageTheme
 }>()
 
-/** Renders the real page at desktop width and scales it down to fit the card. */
 const RENDER_WIDTH = 1280
 
 const container = useTemplateRef<HTMLElement>('container')

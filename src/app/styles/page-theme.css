@@ -1,0 +1,83 @@
+/*
+ * Page theme: design tokens of the landing page being built.
+ * Independent from the editor UI tokens — the page looks the same in editor light and dark mode.
+ * Base tokens are overridden per document via inline styles on `.page-root` (themeToCssVars);
+ * secondary tokens are derived from them here.
+ */
+@layer base {
+  .page-root {
+    --page-bg: #ffffff;
+    --page-fg: #111827;
+    --page-primary: #4f46e5;
+    --page-primary-fg: #ffffff;
+    --page-radius: 0.875rem;
+    --page-font-heading: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+    --page-font-body: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+    --page-muted: color-mix(in oklch, var(--page-fg) 64%, var(--page-bg));
+    --page-surface: color-mix(in oklch, var(--page-fg) 4%, var(--page-bg));
+    --page-line: color-mix(in oklch, var(--page-fg) 12%, var(--page-bg));
+
+    background: var(--page-bg);
+    color: var(--page-fg);
+    font-family: var(--page-font-body);
+  }
+
+  .page-root :is(h1, h2, h3) {
+    font-family: var(--page-font-heading);
+  }
+
+  /*
+   * Responsive block styles. Each block carries resolved values for every breakpoint
+   * (--pt-desktop, --pt-tablet, …); container queries pick the right one, so the page
+   * adapts to its own width — in the editor frame and in the exported HTML alike.
+   * Breakpoints: desktop ≥ 64rem, tablet 48–64rem, mobile < 48rem.
+   */
+  .page-block {
+    --space-none: 0px;
+    --space-sm: 1.5rem;
+    --space-md: 2.5rem;
+    --space-lg: 4rem;
+    --space-xl: 5.5rem;
+
+    --pt: var(--pt-desktop, var(--space-lg));
+    --pb: var(--pb-desktop, var(--space-lg));
+    display: var(--display-desktop, block);
+  }
+
+  @container (width >= 48rem) {
+    .page-block {
+      --space-sm: 2rem;
+      --space-md: 3.5rem;
+      --space-lg: 6rem;
+      --space-xl: 8rem;
+    }
+  }
+
+  @container (width < 64rem) {
+    .page-block {
+      --pt: var(--pt-tablet, var(--space-lg));
+      --pb: var(--pb-tablet, var(--space-lg));
+      display: var(--display-tablet, block);
+    }
+  }
+
+  @container (width < 48rem) {
+    .page-block {
+      --pt: var(--pt-mobile, var(--space-lg));
+      --pb: var(--pb-mobile, var(--space-lg));
+      display: var(--display-mobile, block);
+    }
+  }
+}
+
+@theme inline {
+  --color-page-bg: var(--page-bg);
+  --color-page-fg: var(--page-fg);
+  --color-page-muted: var(--page-muted);
+  --color-page-surface: var(--page-surface);
+  --color-page-line: var(--page-line);
+  --color-page-primary: var(--page-primary);
+  --color-page-primary-fg: var(--page-primary-fg);
+  --radius-page: var(--page-radius);
+}

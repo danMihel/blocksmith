@@ -1,0 +1,85 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+/* Page theme fonts: @font-face only — files are fetched when a theme actually uses them. */
+@import '@fontsource-variable/dm-sans';
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource-variable/playfair-display';
+@import '@fontsource-variable/jetbrains-mono';
+@import './page-theme.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens of the editor UI itself.
+ * Not to be confused with page themes (stage 6) — those live in the document model.
+ */
+:root {
+  --app-bg: oklch(0.985 0.002 265);
+  --app-surface: oklch(1 0 0);
+  --app-surface-muted: oklch(0.965 0.004 265);
+  --app-line: oklch(0.915 0.006 265);
+  --app-fg: oklch(0.22 0.02 265);
+  --app-fg-muted: oklch(0.54 0.02 265);
+  --app-accent: oklch(0.56 0.21 277);
+  --app-accent-hover: oklch(0.5 0.21 277);
+  --app-accent-fg: oklch(1 0 0);
+  --app-accent-soft: oklch(0.56 0.21 277 / 0.1);
+  --app-danger: oklch(0.58 0.21 27);
+  --app-danger-fg: oklch(1 0 0);
+  --app-ring: oklch(0.56 0.21 277 / 0.45);
+
+  color-scheme: light;
+}
+
+.dark {
+  --app-bg: oklch(0.155 0.008 265);
+  --app-surface: oklch(0.195 0.01 265);
+  --app-surface-muted: oklch(0.24 0.012 265);
+  --app-line: oklch(0.29 0.012 265);
+  --app-fg: oklch(0.96 0.004 265);
+  --app-fg-muted: oklch(0.69 0.015 265);
+  --app-accent: oklch(0.7 0.16 277);
+  --app-accent-hover: oklch(0.76 0.14 277);
+  --app-accent-fg: oklch(0.16 0.01 265);
+  --app-accent-soft: oklch(0.7 0.16 277 / 0.15);
+  --app-danger: oklch(0.68 0.19 25);
+  --app-danger-fg: oklch(0.16 0.01 265);
+  --app-ring: oklch(0.7 0.16 277 / 0.5);
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: var(--app-bg);
+  --color-surface: var(--app-surface);
+  --color-surface-muted: var(--app-surface-muted);
+  --color-line: var(--app-line);
+  --color-fg: var(--app-fg);
+  --color-fg-muted: var(--app-fg-muted);
+  --color-accent: var(--app-accent);
+  --color-accent-hover: var(--app-accent-hover);
+  --color-accent-fg: var(--app-accent-fg);
+  --color-accent-soft: var(--app-accent-soft);
+  --color-danger: var(--app-danger);
+  --color-danger-fg: var(--app-danger-fg);
+  --color-ring: var(--app-ring);
+}
+
+@layer base {
+  html {
+    @apply bg-bg font-sans text-fg antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent-soft;
+  }
+}
+
+/* Set on <html> while a drag is in progress. */
+.is-dragging,
+.is-dragging * {
+  cursor: grabbing !important;
+  user-select: none;
+}
